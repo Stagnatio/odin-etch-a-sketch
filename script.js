@@ -1,25 +1,25 @@
-/*const box = document.createElement("div");
-box.setAttribute("id", "div1");*/
-const container = document.getElementById("container");
-
-/*let arr = [];*/
-
-for (let i=0; i<16;i++) {
-    let divguts = document.createElement('div');
-    divguts.setAttribute("class", "item");
-    let div = document.getElementById("container")
-        .appendChild(divguts);
-    /*let info = document.createTextNode(`${i+1}`);
-    div.appendChild(info);
-    arr.push(div);*/
-
-    divguts.addEventListener("mouseover", colorChange);
+function popUp() {
+    dimension = prompt("What size would you like the grid? (2-100)");
+    document.getElementById("container").innerHTML = "";
+    createGrid(dimension);
 }
-/*
-square.addEventListener("mouseenter", changecolor(arr[i]) {
-    target.style.color = "purple";
-})
-*/
+
+function createGrid(dim) {
+    let container = document.getElementById("container");
+    container.style.gridTemplateColumns = `repeat(${dim}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${dim}, 1fr)`;
+
+    for (let i=0; i<dim; i++) {
+        for (let j=0; j<dim; j++) {
+            let div = document.createElement('div');
+            div.setAttribute("class", "item");
+
+            document.getElementById("container").appendChild(div);
+        
+            div.addEventListener("mouseover", colorChange);
+        }
+    }
+}
 
 function colorChange() {
     this.setAttribute("style", "background-color: green;");
